@@ -1,0 +1,87 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* --- Global Resets & Box-Sizing --- */
+html, body {
+  height: 100%; /* Ensures body takes full height */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Standardizes box model */
+}
+
+*, *::before, *::after {
+  box-sizing: inherit; /* Inherit box-sizing for all elements */
+}
+
+/* --- Font Definitions (Import from Google Fonts) --- */
+/*
+   For "posh and classy", we'll use an elegant serif for headings and a clean sans-serif for body text.
+   Go to Google Fonts (fonts.google.com), search for 'Playfair Display' and 'Lato',
+   select the styles you want (e.g., Playfair Display 400, 700; Lato 300, 400, 700),
+   and copy the `@import` rule for CSS into the TOP of this `styles.scss` file.
+
+   Example:
+*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+
+:root {
+  /* --- Define your Posh & Classy Color Palette --- */
+  /* These are CSS Custom Properties (variables) accessible throughout your app. */
+  /* Browns, golds, off-whites, charcoal are common for this theme. */
+  --color-primary: #8B4513;   /* SaddleBrown - a rich, warm brown for accents/important elements */
+  --color-secondary: #DAA520; /* Goldenrod - a vibrant gold for highlights */
+  --color-accent: #1E90FF;    /* DodgerBlue - a contrasting blue for interactive elements like buttons/links */
+  --color-text-dark: #333333; /* Dark charcoal for most body text */
+  --color-text-light: #FFFFFF;/* Pure white for text on dark backgrounds */
+  --color-background-light: #F8F8F8; /* Soft off-white for general page backgrounds */
+  --color-background-dark: #2C3E50; /* A deep, muted blue/grey for dark sections or overlays */
+  --color-border: #CCCCCC;    /* Light grey for subtle borders */
+  --color-success: #28A745;   /* Standard green for success messages */
+  --color-error: #DC3545;     /* Standard red for error messages */
+
+  /* --- Font Stacks --- */
+  --font-heading: 'Playfair Display', serif; /* Elegant serif for headings */
+  --font-body: 'Lato', sans-serif;         /* Clean sans-serif for body */
+
+  /* --- Spacing --- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+
+  /* --- Border Radius --- */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --shadow-md: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  --shadow-lg: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  background-color: var(--color-background-light);
+  line-height: 1.6; /* Good readability */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary); /* Or a darker version for headings */
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  font-weight: 700; /* Bold headings */
+}
+
+/* --- Basic Link Styling --- */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

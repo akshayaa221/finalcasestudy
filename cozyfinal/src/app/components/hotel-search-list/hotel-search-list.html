@@ -1,0 +1,30 @@
+<div class="hotel-search-list-container">
+  <h2>Hotels in "{{ searchLocation }}"</h2>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Searching for hotels...
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && searchResults.length > 0" class="hotel-list">
+    <div *ngFor="let hotel of searchResults" class="hotel-card">
+      <img [src]="hotel.imageUrls && hotel.imageUrls.length > 0 ? hotel.imageUrls[0] : 'https://placehold.co/400x200?text=No+Image'" alt="{{ hotel.name }}" class="hotel-image">
+      <div class="hotel-info">
+        <h3>{{ hotel.name }}</h3>
+        <p><strong>Location:</strong> {{ hotel.location }}</p>
+        <a [routerLink]="['/hotels', hotel.id]">View Details</a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && searchResults.length === 0 && !errorMessage" class="no-results-message">
+    No hotels found for "{{ searchLocation }}".
+  </div>
+
+  <div class="back-button-container">
+    <a routerLink="/hotels" class="button secondary">Back to All Hotels</a>
+  </div>
+</div>

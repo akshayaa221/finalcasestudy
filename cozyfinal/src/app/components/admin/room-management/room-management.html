@@ -1,0 +1,123 @@
+    <div class="room-management-container">
+      <h2>Room Management</h2>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+
+      <!-- Hotel Selection -->
+      <div class="hotel-selection-card">
+        <h3>Select Hotel to Manage Rooms</h3>
+        <div *ngIf="isLoadingHotels" class="loading-message">Loading hotels...</div>
+        <div *ngIf="!isLoadingHotels && hotels.length === 0" class="no-hotels-message">No hotels available. Please add hotels first.</div>
+
+        <div class="form-group" *ngIf="!isLoadingHotels && hotels.length > 0">
+          <label for="hotelSelect">Choose a Hotel:</label>
+          <select id="hotelSelect" name="hotelSelect" [(ngModel)]="selectedHotelId" (change)="onHotelSelect()">
+            <option [ngValue]="null" disabled>-- Select a Hotel --</option>
+            <option *ngFor="let hotel of hotels" [ngValue]="hotel.id">
+              {{ hotel.name }} ({{ hotel.location }})
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Room Add/Edit Form -->
+      <div class="room-form-card" *ngIf="selectedHotelId">
+        <h3>{{ isEditing ? 'Edit Room' : 'Add New Room' }} for {{ selectedHotelName }}</h3> <!-- <-- FIXED HERE -->
+        <form (ngSubmit)="saveRoom()">
+          <div class="form-group">
+            <label for="roomNumber">Room Number:</label>
+            <input type="text" id="roomNumber" name="roomNumber" [(ngModel)]="newRoom.roomNumber" required />
+          </div>
+          <div class="form-group">
+            <label for="bedType">Bed Type:</label>
+            <input type="text" id="bedType" name="bedType" [(ngModel)]="newRoom.bedType" required />
+          </div>
+          <div class="form-group">
+            <label for="maxOccupancy">Max Occupancy:</label>
+            <input type="number" id="maxOccupancy" name="maxOccupancy" [(ngModel)]="newRoom.maxOccupancy" min="1" required />
+          </div>
+          <div class="form-group">
+            <label for="baseFare">Base Fare:</label>
+            <input type="number" id="baseFare" name="baseFare" [(ngModel)]="newRoom.baseFare" min="0" step="0.01" required />
+          </div>
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="acNonAc" name="acNonAc" [(ngModel)]="newRoom.acNonAc" />
+            <label for="acNonAc">AC Room</label>
+          </div>
+          <div class="form-group">
+            <label for="roomSize">Room Size (e.g., 20sqm):</label>
+            <input type="text" id="roomSize" name="roomSize" [(ngModel)]="newRoom.roomSize" />
+          </div>
+          <div class="form-group">
+            <label for="imageUrls">Image URLs (comma-separated):</label>
+            <input
+              type="text"
+              id="imageUrls"
+              name="imageUrls"
+              [ngModel]="getImageUrlsAsString()"
+              (ngModelChange)="setImageUrlsFromString($event)"
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="save-button">
+              {{ isEditing ? 'Update Room' : 'Add Room' }}
+            </button>
+            <button type="button" (click)="initiateAddRoom()" class="cancel-button" *ngIf="isEditing">
+              Cancel Edit
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Room List Table -->
+      <div class="room-list-section" *ngIf="selectedHotelId">
+        <h3>Rooms for {{ selectedHotelName }}</h3> <!-- <-- FIXED HERE -->
+        <div *ngIf="isLoadingRooms" class="loading-message">
+          Loading rooms...
+        </div>
+
+        <div *ngIf="!isLoadingRooms && rooms.length === 0 && !errorMessage" class="no-rooms-message">
+          No rooms found for this hotel. Add one above!
+        </div>
+
+        <div *ngIf="!isLoadingRooms && rooms.length > 0" class="rooms-table-responsive">
+          <table class="rooms-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Room No.</th>
+                <th>Bed Type</th>
+                <th>Occupancy</th>
+                <th>Fare</th>
+                <th>AC</th>
+                <th>Size</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let room of rooms">
+                <td>{{ room.id }}</td>
+                <td>{{ room.roomNumber }}</td>
+                <td>{{ room.bedType }}</td>
+                <td>{{ room.maxOccupancy }}</td>
+                <td>${{ room.baseFare | number:'1.2-2' }}</td>
+                <td>{{ room.acNonAc ? 'Yes' : 'No' }}</td>
+                <td>{{ room.roomSize || 'N/A' }}</td>
+                <td>
+                  <button (click)="initiateEditRoom(room)" class="edit-button">Edit</button>
+                  <button (click)="deleteRoom(room.id!, room.roomNumber)" class="delete-button">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    

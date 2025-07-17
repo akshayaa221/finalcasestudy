@@ -1,0 +1,75 @@
+<div class="booking-management-container">
+  <h2>Booking Management</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <label for="statusFilter">Filter by Status:</label>
+    <select id="statusFilter" name="statusFilter" [(ngModel)]="selectedStatusFilter">
+      <option value="ALL">All Statuses</option>
+      <option *ngFor="let status of bookingStatuses" [value]="status">{{ status }}</option>
+    </select>
+  </div>
+
+  <!-- Booking List Table -->
+  <div class="booking-list-section">
+    <h3>All Bookings</h3>
+    <div *ngIf="isLoading" class="loading-message">
+      Loading all bookings...
+    </div>
+
+    <div *ngIf="!isLoading && filteredBookings.length === 0 && !errorMessage" class="no-bookings-message">
+      No bookings found matching the filter.
+    </div>
+
+    <div *ngIf="!isLoading && filteredBookings.length > 0" class="bookings-table-responsive">
+      <table class="bookings-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>User Email</th>
+            <th>Hotel</th>
+            <th>Room No.</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Guests</th>
+            <th>Fare</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of filteredBookings">
+            <td>{{ booking.id }}</td>
+            <td>{{ booking.user?.email || 'N/A' }}</td>
+            <td>{{ booking.room?.hotel?.name || 'N/A' }}</td>
+            <td>{{ booking.room?.roomNumber || 'N/A' }}</td>
+            <td>{{ booking.checkInDate | date:'shortDate' }}</td>
+            <td>{{ booking.checkOutDate | date:'shortDate' }}</td>
+            <td>{{ booking.peopleCount }}</td>
+            <td>${{ booking.totalFare | number:'1.2-2' }}</td>
+            <td>
+              <select
+                [ngModel]="booking.bookingStatus"
+                (ngModelChange)="updateBookingStatus(booking.id!, $event)"
+                [ngClass]="'status-select-' + booking.bookingStatus.toLowerCase()"
+              >
+                <option *ngFor="let status of bookingStatuses" [value]="status">{{ status }}</option>
+              </select>
+            </td>
+            <td>
+              <button (click)="deleteBooking(booking.id!)" class="delete-button">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

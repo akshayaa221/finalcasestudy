@@ -1,0 +1,49 @@
+<div class="user-management-container">
+  <h2>User Management</h2>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Loading users...
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && users.length === 0 && !errorMessage" class="no-users-message">
+    No users found.
+  </div>
+
+  <div *ngIf="!isLoading && users.length > 0" class="users-table-responsive">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Roles</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <span *ngFor="let role of user.roles; last as isLast">
+              {{ role }}{{ !isLast ? ', ' : '' }}
+            </span>
+          </td>
+          <td>
+            <button class="edit-button">Edit</button>
+            <button class="delete-button">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

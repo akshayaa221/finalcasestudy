@@ -1,0 +1,88 @@
+.login-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: var(--spacing-xl);
+  border: 1px solid var(--color-background-muted);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-background-light);
+
+  h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-primary);
+  }
+
+  .form-group {
+    margin-bottom: var(--spacing-lg);
+
+    label {
+      display: block;
+      margin-bottom: var(--spacing-sm);
+      font-weight: 600;
+      color: var(--color-text-dark);
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] { /* Added type="email" to the selector */
+      width: 100%;
+      padding: var(--spacing-md);
+      border: 1px solid var(--color-background-muted);
+      border-radius: var(--border-radius-sm);
+      font-size: var(--font-size-base);
+      box-sizing: border-box; // Ensures padding doesn't increase total width
+    }
+
+    .error-message {
+      color: var(--color-danger);
+      font-size: var(--font-size-sm);
+      margin-top: var(--spacing-xs);
+    }
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: var(--spacing-md);
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover:not([disabled]) {
+      // Replaced `darken(var(--color-primary), 10%)` with a direct hex color
+      background-color: #0056b3; // Example: A darker shade of a common blue primary color. Adjust as needed.
+    }
+
+    &:disabled {
+      background-color: var(--color-background-muted);
+      cursor: not-allowed;
+    }
+  }
+
+  .auth-error {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: #ffe0e0; // Light red background
+    border: 1px solid var(--color-danger);
+    border-radius: var(--border-radius-sm);
+  }
+
+  .register-link {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    color: var(--color-text-dark);
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,159 @@
+.user-profile-container {
+  padding: var(--spacing-xl);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .loading-message,
+  .error-message,
+  .success-message {
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .loading-message {
+    background-color: var(--color-info);
+    color: var(--color-text-light);
+  }
+
+  .error-message {
+    background-color: var(--color-danger);
+    color: var(--color-text-light);
+  }
+
+  .success-message {
+    background-color: var(--color-success);
+    color: var(--color-text-light);
+  }
+
+  .profile-card {
+    background-color: var(--color-background-light);
+    border: 1px solid var(--color-background-muted);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    text-align: left;
+
+    h3 {
+      color: var(--color-accent);
+      margin-top: 0;
+      margin-bottom: var(--spacing-lg);
+      text-align: center;
+    }
+
+    p {
+      color: var(--color-text-dark);
+      margin-bottom: var(--spacing-sm);
+      font-size: var(--font-size-base);
+    }
+
+    .edit-button {
+      background-color: var(--color-secondary);
+      color: var(--color-text-light);
+      border: none;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: var(--spacing-lg);
+      display: block;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+
+      &:hover {
+        background-color: #5a6268; // Darker secondary
+      }
+    }
+
+    .edit-profile-form {
+      margin-top: var(--spacing-lg);
+
+      hr {
+        border: none;
+        border-top: 1px solid var(--color-background-muted);
+        margin: var(--spacing-xl) 0;
+      }
+
+      h4 {
+        color: var(--color-primary);
+        margin-bottom: var(--spacing-lg);
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: var(--spacing-lg);
+
+        label {
+          display: block;
+          margin-bottom: var(--spacing-sm);
+          font-weight: 600;
+          color: var(--color-text-dark);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+          width: 100%;
+          padding: var(--spacing-md);
+          border: 1px solid var(--color-background-muted);
+          border-radius: var(--border-radius-sm);
+          font-size: var(--font-size-base);
+          box-sizing: border-box;
+        }
+
+        .error-message {
+          color: var(--color-danger);
+          font-size: var(--font-size-sm);
+          margin-top: var(--spacing-xs);
+        }
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-lg);
+
+        button {
+          padding: var(--spacing-md) var(--spacing-lg);
+          border: none;
+          border-radius: var(--border-radius-sm);
+          font-size: var(--font-size-base);
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .save-button {
+          background-color: var(--color-primary);
+          color: var(--color-text-light);
+          &:hover {
+            background-color: #0056b3; // Darker primary
+          }
+          &:disabled {
+            background-color: var(--color-background-muted);
+            cursor: not-allowed;
+          }
+        }
+
+        .cancel-button {
+          background-color: var(--color-background-muted);
+          color: var(--color-text-dark);
+          &:hover {
+            background-color: #d1d1d1; // Lighter muted background
+          }
+        }
+      }
+    }
+  }
+}

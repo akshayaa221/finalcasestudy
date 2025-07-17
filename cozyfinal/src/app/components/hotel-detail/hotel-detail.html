@@ -1,0 +1,51 @@
+<div class="hotel-detail-container">
+  <div *ngIf="isLoadingHotel" class="loading-message">
+    Loading hotel details...
+  </div>
+
+  <div *ngIf="hotelErrorMessage" class="error-message">
+    {{ hotelErrorMessage }}
+  </div>
+
+  <div *ngIf="hotel && !isLoadingHotel" class="hotel-info-card">
+    <h2>{{ hotel.name }}</h2>
+    <p><strong>Location:</strong> {{ hotel.location }}</p>
+    <p *ngIf="hotel.description"><strong>Description:</strong> {{ hotel.description }}</p>
+    <p *ngIf="hotel.rating"><strong>Rating:</strong> {{ hotel.rating }} / 5</p>
+    <!-- Add more hotel details like amenities, images if available in your Hotel interface -->
+
+    <div class="rooms-section">
+      <h3>Available Rooms</h3>
+
+      <div *ngIf="isLoadingRooms" class="loading-message">
+        Loading rooms...
+      </div>
+
+      <div *ngIf="roomsErrorMessage" class="error-message">
+        {{ roomsErrorMessage }}
+      </div>
+
+      <div *ngIf="!isLoadingRooms && rooms.length === 0 && !roomsErrorMessage" class="no-rooms-message">
+        No rooms found for this hotel.
+      </div>
+
+      <div *ngIf="!isLoadingRooms && rooms.length > 0" class="room-cards-grid">
+        <div *ngFor="let room of rooms" class="room-card">
+          <h4>Room Number: {{ room.roomNumber }}</h4>
+          <p><strong>Bed Type:</strong> {{ room.bedType }}</p>
+          <p><strong>Max Occupancy:</strong> {{ room.maxOccupancy }} people</p>
+          <p><strong>Base Fare:</strong> ${{ room.baseFare | number:'1.2-2' }}</p>
+          <p><strong>AC/Non-AC:</strong> {{ room.acNonAc ? 'AC' : 'Non-AC' }}</p>
+          <p *ngIf="room.roomSize"><strong>Size:</strong> {{ room.roomSize }}</p>
+
+          <div *ngIf="room.imageUrls && room.imageUrls.length > 0" class="room-images">
+            <img *ngFor="let imageUrl of room.imageUrls" [src]="imageUrl" alt="Room Image" class="room-image">
+          </div>
+
+          <!-- Use routerLink for navigation to booking form -->
+          <a [routerLink]="['/book-room', room.id]" class="book-button">Book Now</a> <!-- <-- ADDED routerLink -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

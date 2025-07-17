@@ -1,0 +1,84 @@
+<div class="hotel-management-container">
+  <h2>Hotel Management</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <!-- Hotel Add/Edit Form -->
+  <div class="hotel-form-card">
+    <h3>{{ isEditing ? 'Edit Hotel' : 'Add New Hotel' }}</h3>
+    <form (ngSubmit)="saveHotel()">
+      <div class="form-group">
+        <label for="name">Hotel Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="newHotel.name" required />
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" [(ngModel)]="newHotel.location" required />
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="newHotel.description" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating (0-5):</label>
+        <input type="number" id="rating" name="rating" [(ngModel)]="newHotel.rating" min="0" max="5" step="0.1" />
+      </div>
+      <!-- Add more fields if your Hotel interface has them (e.g., imageUrls) -->
+
+      <div class="form-actions">
+        <button type="submit" class="save-button">
+          {{ isEditing ? 'Update Hotel' : 'Add Hotel' }}
+        </button>
+        <button type="button" (click)="initiateAddHotel()" class="cancel-button" *ngIf="isEditing">
+          Cancel Edit
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Hotel List Table -->
+  <div class="hotel-list-section">
+    <h3>Current Hotels</h3>
+    <div *ngIf="isLoading" class="loading-message">
+      Loading hotels...
+    </div>
+
+    <div *ngIf="!isLoading && hotels.length === 0 && !errorMessage" class="no-hotels-message">
+      No hotels found. Add one above!
+    </div>
+
+    <div *ngIf="!isLoading && hotels.length > 0" class="hotels-table-responsive">
+      <table class="hotels-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Rating</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let hotel of hotels">
+            <td>{{ hotel.id }}</td>
+            <td>{{ hotel.name }}</td>
+            <td>{{ hotel.location }}</td>
+            <td>{{ hotel.rating | number:'1.1-1' }}</td>
+            <td>{{ hotel.description | slice:0:50 }}{{ hotel.description && hotel.description.length > 50 ? '...' : '' }}</td>
+            <td>
+              <button (click)="initiateEditHotel(hotel)" class="edit-button">Edit</button>
+              <button (click)="deleteHotel(hotel.id!, hotel.name)" class="delete-button">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

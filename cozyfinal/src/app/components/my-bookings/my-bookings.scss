@@ -1,0 +1,104 @@
+.my-bookings-container {
+  padding: var(--spacing-xl);
+  max-width: 1000px;
+  margin: 0 auto;
+
+  h2 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .loading-message,
+  .error-message,
+  .success-message,
+  .no-bookings-message {
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .loading-message {
+    background-color: var(--color-info);
+    color: var(--color-text-light);
+  }
+
+  .error-message {
+    background-color: var(--color-danger);
+    color: var(--color-text-light);
+  }
+
+  .success-message {
+    background-color: var(--color-success);
+    color: var(--color-text-light);
+  }
+
+  .no-bookings-message {
+    background-color: var(--color-background-muted);
+    color: var(--color-text-dark);
+  }
+
+  .booking-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .booking-card {
+    background-color: var(--color-background-light);
+    border: 1px solid var(--color-background-muted);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h3 {
+      color: var(--color-text-dark);
+      margin-top: 0;
+      margin-bottom: var(--spacing-md);
+    }
+
+    p {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-sm);
+      font-size: var(--font-size-base);
+    }
+
+    .status-pending {
+      color: var(--color-warning);
+      font-weight: 600;
+    }
+    .status-confirmed {
+      color: var(--color-success);
+      font-weight: 600;
+    }
+    .status-cancelled {
+      color: var(--color-danger);
+      font-weight: 600;
+    }
+    .status-completed {
+      color: var(--color-info);
+      font-weight: 600;
+    }
+
+    .cancel-button {
+      background-color: var(--color-danger);
+      color: var(--color-text-light);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      align-self: flex-start;
+      margin-top: var(--spacing-md);
+
+      &:hover {
+        background-color: #c82333; // Darker shade of danger
+      }
+    }
+  }
+}

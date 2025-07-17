@@ -1,0 +1,153 @@
+/* Styling for the Hotel List page - Minimal Color Changes */
+
+.hotel-list-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff; /* Reverted to white */
+  border-radius: 8px; /* Reverted to 8px */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reverted to original shadow */
+}
+
+h2 {
+  text-align: center;
+  color: #8B4513; /* SaddleBrown - Changed font color */
+  margin-bottom: 30px;
+  font-size: 2.5em; /* Keep larger heading for prominence */
+  font-weight: bold;
+}
+
+/* Search Bar Styling */
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-bar input[type="text"] {
+  padding: 10px 15px;
+  border: 1px solid #ddd; /* Reverted to light grey border */
+  border-radius: 5px; /* Reverted to 5px */
+  flex-grow: 1;
+  max-width: 400px;
+  font-size: 1em;
+  box-shadow: none; /* Removed inner shadow */
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #8B4513; /* SaddleBrown - Changed from blue to brown */
+  color: white;
+  border: none;
+  border-radius: 5px; /* Reverted to 5px */
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.search-bar button:hover {
+  background-color: #6B350F; /* Darker brown on hover */
+  transform: none; /* Removed lift effect */
+}
+
+/* Clear Search Button specific style - keep neutral grey */
+.search-bar button:last-child {
+  background-color: #6c757d; /* Neutral grey for clear */
+}
+
+.search-bar button:last-child:hover {
+  background-color: #5a6268;
+}
+
+
+/* Hotel List and Card Styling */
+.hotel-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px; /* Reverted to 20px gap */
+}
+
+.hotel-card {
+  border: 1px solid #eee; /* Reverted to light grey border */
+  border-radius: 8px; /* Reverted to 8px */
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Reverted to original shadow */
+  transition: transform 0.2s ease-in-out; /* Reverted to original transition */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff; /* Reverted to white */
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px); /* Reverted to original lift */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow on hover, but still neutral */
+}
+
+.hotel-image {
+  width: 100%;
+  height: 200px; /* Reverted to original height */
+  object-fit: cover;
+  display: block;
+  border-bottom: none; /* Removed border under image */
+}
+
+.hotel-info {
+  padding: 15px; /* Reverted to original padding */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel-info h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #8B4513; /* SaddleBrown - Changed font color */
+  font-size: 1.6em; /* Keep larger hotel name */
+}
+
+.hotel-info p {
+  margin-bottom: 5px;
+  color: #444; /* Dark grey for readability - Changed font color */
+  font-size: 0.95em;
+}
+
+.hotel-info .details-button {
+  display: inline-block; /* Reverted to inline-block */
+  margin-top: 15px;
+  padding: 8px 15px;
+  background-color: #8B4513; /* SaddleBrown - Changed from green to brown */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px; /* Reverted to 5px */
+  text-align: center;
+  font-weight: normal; /* Reverted to normal font weight */
+  transition: background-color 0.3s ease;
+  transform: none; /* Removed lift effect */
+}
+
+.hotel-info .details-button:hover {
+  background-color: #6B350F; /* Darker brown on hover */
+}
+
+/* Messages */
+.loading-message,
+.error-message,
+.no-hotels-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1em; /* Reverted to original font size */
+  color: #666; /* Reverted to original color */
+  background-color: #fff; /* Reverted to white */
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reverted to original shadow */
+}
+
+.error-message {
+  color: #dc3545; /* Red for errors (standard) */
+  font-weight: bold;
+}

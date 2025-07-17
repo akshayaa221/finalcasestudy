@@ -1,0 +1,67 @@
+/* This file can be empty for now */
+.app-header {
+  background-color: #333;
+  padding: 15px 20px;
+  color: white;
+  text-align: center;
+}
+
+.app-header nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.app-header nav a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.app-header nav a:hover,
+.app-header nav a.active {
+  background-color: #555;
+}
+
+.app-header nav button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.app-header nav button:hover {
+  background-color: #c82333;
+}
+
+.app-main-content {
+  padding: 20px;
+  // --- ADD THESE LINES FOR BACKGROUND IMAGE ---
+  background-image: url('https://www.gentinghotel.co.uk/_next/image?url=https%3A%2F%2Fs3.eu-west-2.amazonaws.com%2Fstaticgh.gentinghotel.co.uk%2Fuploads%2Fhero%2FSuiteNov2022_0008_1920.jpg&w=3840&q=75'); /* Replace with your image path */
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents image repetition */
+  min-height: calc(100vh - 60px); /* Adjust 60px if your header height is different */
+  display: flex; /* Helps center content if needed */
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  flex-direction: column; /* Stacks children vertically */
+  // --- END ADDITIONS ---
+}
+
+// You might also want to add a semi-transparent overlay for readability
+.app-main-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Dark semi-transparent overlay */
+  z-index: -1; /* Place behind content */
+}

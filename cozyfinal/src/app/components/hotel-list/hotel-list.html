@@ -1,0 +1,40 @@
+<div class="hotel-list-container">
+  <h2>Our Hotels</h2>
+
+  <!-- Search Bar Section -->
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="searchLocation" placeholder="Search by location..." (keyup.enter)="onSearch()">
+    <button (click)="onSearch()">Search</button>
+    <button *ngIf="searchLocation.trim()" (click)="clearSearch()">Clear Search</button>
+  </div>
+  <!-- End Search Bar Section -->
+
+  <div *ngIf="isLoading" class="loading-message">Loading hotels...</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <div *ngIf="!isLoading && !errorMessage">
+    <!-- Message for no hotels found (either initially or after search) -->
+    <div *ngIf="hotels.length === 0" class="no-hotels-message">
+      {{ hasSearched ? 'No hotels found for "' + searchLocation + '".' : 'No hotels available at the moment.' }}
+    </div>
+
+    <!-- Display hotels (either all or search results) -->
+    <div *ngIf="hotels.length > 0" class="hotel-cards-grid">
+      <h3>{{ hasSearched ? 'Search Results' : 'All Hotels' }}</h3>
+      <div *ngFor="let hotel of hotels" class="hotel-card">
+        <!-- TEMPORARY CHANGE: Using a fixed dummy image URL -->
+        <img src="https://picsum.photos/400/200?random={{hotel.id}}" alt="{{ hotel.name }}" class="hotel-image">
+        <!-- Original line (commented out for now):
+        <img [src]="hotel.imageUrls && hotel.imageUrls.length > 0 ? hotel.imageUrls[0] : 'https://placehold.co/400x200?text=No+Image'" alt="{{ hotel.name }}" class="hotel-image">
+        -->
+        <div class="hotel-info">
+          <h3>{{ hotel.name }}</h3>
+          <p><strong>Location:</strong> {{ hotel.location }}</p>
+          <p *ngIf="hotel.description"><strong>Description:</strong> {{ hotel.description }}</p>
+          <p *ngIf="hotel.rating"><strong>Rating:</strong> {{ hotel.rating }} / 5</p>
+          <a [routerLink]="['/hotels', hotel.id]" class="details-button">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

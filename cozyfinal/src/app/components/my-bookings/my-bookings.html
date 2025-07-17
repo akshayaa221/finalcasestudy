@@ -1,0 +1,45 @@
+<div class="my-bookings-container">
+  <h2>My Bookings</h2>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Loading your bookings...
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && bookings.length === 0 && !errorMessage" class="no-bookings-message">
+    You have no bookings yet.
+  </div>
+
+  <div *ngIf="!isLoading && bookings.length > 0" class="bookings-list">
+    <div *ngFor="let booking of bookings" class="booking-card">
+      <h3>Booking ID: {{ booking.id }}</h3>
+      <p><strong>Hotel:</strong> {{ booking.room?.hotel?.name || 'N/A' }}</p>
+      <p><strong>Room Number:</strong> {{ booking.room?.roomNumber || 'N/A' }}</p>
+      <p><strong>Check-in Date:</strong> {{ booking.checkInDate }}</p>
+      <p><strong>Check-out Date:</strong> {{ booking.checkOutDate }}</p>
+      <p><strong>Number of Rooms:</strong> {{ booking.numberOfRooms }}</p>
+      <p><strong>Adults:</strong> {{ booking.numberOfAdults }}</p>
+      <p *ngIf="booking.numberOfChildren !== undefined && booking.numberOfChildren !== null"><strong>Children:</strong> {{ booking.numberOfChildren }}</p>
+      <p><strong>Total Fare:</strong> ${{ booking.totalFare | number:'1.2-2' }}</p>
+      <p><strong>Booking Date:</strong> {{ booking.bookingDate || 'N/A' }}</p>
+      <p><strong>Status:</strong> <span [class]="'status-' + booking.bookingStatus.toLowerCase()">{{ booking.bookingStatus }}</span></p>
+
+      <div class="booking-actions">
+        <button
+          *ngIf="canCancel(booking.bookingStatus)"
+          (click)="cancelBooking(booking.id!)"
+          class="cancel-button"
+        >
+          Cancel Booking
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

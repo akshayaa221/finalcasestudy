@@ -1,0 +1,118 @@
+<div class="booking-form-container">
+  <h2>Book Your Room</h2>
+
+  <div *ngIf="isLoadingRoom" class="loading-message">
+    Loading room details...
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="room && !isLoadingRoom" class="room-details-card">
+    <h3>Room Details: {{ room.roomNumber }}</h3>
+    <p><strong>Hotel:</strong> {{ room.hotel?.name || 'N/A' }}</p>
+    <p><strong>Bed Type:</strong> {{ room.bedType }}</p>
+    <p><strong>Max Occupancy:</strong> {{ room.maxOccupancy }} people</p>
+    <p><strong>Base Fare:</strong> ${{ room.baseFare | number:'1.2-2' }}</p>
+    <p><strong>AC/Non-AC:</strong> {{ room.acNonAc ? 'AC' : 'Non-AC' }}</p>
+    <p *ngIf="room.roomSize"><strong>Size:</strong> {{ room.roomSize }}</p>
+  </div>
+
+  <div *ngIf="room && !isLoadingRoom" class="booking-form-card">
+    <h3>Booking Information</h3>
+    <form (ngSubmit)="submitBooking()">
+      <div class="form-group">
+        <label for="checkInDate">Check-in Date:</label>
+        <input
+          type="date"
+          id="checkInDate"
+          name="checkInDate"
+          [(ngModel)]="checkInDate"
+          [min]="minCheckInDate"
+          (change)="onCheckInDateChange()"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="checkOutDate">Check-out Date:</label>
+        <input
+          type="date"
+          id="checkOutDate"
+          name="checkOutDate"
+          [(ngModel)]="checkOutDate"
+          [min]="minCheckOutDate"
+          (change)="onCheckOutDateChange()"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="numberOfRooms">Number of Rooms:</label>
+        <input
+          type="number"
+          id="numberOfRooms"
+          name="numberOfRooms"
+          [(ngModel)]="numberOfRooms"
+          min="1"
+          required
+          (ngModelChange)="calculateTotalFare()"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="numberOfAdults">Number of Adults:</label>
+        <input
+          type="number"
+          id="numberOfAdults"
+          name="numberOfAdults"
+          [(ngModel)]="numberOfAdults"
+          min="1"
+          required
+          (ngModelChange)="calculateTotalFare()"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="numberOfChildren">Number of Children:</label>
+        <input
+          type="number"
+          id="numberOfChildren"
+          name="numberOfChildren"
+          [(ngModel)]="numberOfChildren"
+          min="0"
+          (ngModelChange)="calculateTotalFare()"
+        />
+      </div>
+
+      <!-- Display for peopleCount, derived from adults + children -->
+      <div class="form-group">
+        <label for="peopleCount">Total Guests:</label>
+        <input
+          type="number"
+          id="peopleCount"
+          name="peopleCount"
+          min="1"
+          required
+          readonly
+          [value]="numberOfAdults + numberOfChildren"
+        />
+      </div>
+
+      <button type="button" (click)="checkAvailability()" class="check-availability-button">Check Availability</button>
+
+      <div *ngIf="availabilityMessage" class="availability-message">
+        {{ availabilityMessage }}
+      </div>
+
+      <div class="total-fare">
+        <strong>Estimated Total Fare:</strong> ${{ totalFare | number:'1.2-2' }}
+      </div>
+
+      <button type="submit" [disabled]="isBooking || totalFare <= 0" class="book-now-button">
+        {{ isBooking ? 'Booking...' : 'Confirm Booking' }}
+      </button>
+    </form>
+  </div>
+</div>

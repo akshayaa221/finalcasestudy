@@ -1,0 +1,265 @@
+/* Styling for the Home Component - Distinct from Dashboard */
+
+.home-container {
+  max-width: 1400px; /* Wider container */
+  margin: 0 auto;
+  padding: 0; /* Remove padding from container, sections will have it */
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+.hero-section {
+  position: relative;
+  height: 60vh; /* Make it a hero banner */
+  min-height: 450px;
+  background-image: url('/assets/home-hero-bg.jpg'); /* Placeholder: Add your own hero image here */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white; /* Text color for hero section */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Overlay for readability on hero image */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Darker overlay for text contrast */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  max-width: 900px;
+}
+
+.hero-content h1 {
+  font-size: 4.5em; /* Very large heading */
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content .tagline {
+  font-size: 2.2em;
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.hero-content .description {
+  font-size: 1.3em;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Button styles (reused from other components, adjusted for size/prominence) */
+.button {
+  display: inline-block;
+  padding: 18px 40px; /* Larger buttons */
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.25em; /* Larger font */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button.primary {
+  background-color: #8B4513; /* SaddleBrown */
+  color: white;
+}
+
+.button.primary:hover {
+  background-color: #6B350F; /* Darker brown */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.button.secondary {
+  background-color: #DAA520; /* Goldenrod */
+  color: white;
+}
+
+.button.secondary:hover {
+  background-color: #B8860B; /* Darker Goldenrod */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.discover-section {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #FDF5E6; /* Light, warm background */
+}
+
+.discover-section h2 {
+  font-size: 3.2em;
+  color: #8B4513;
+  margin-bottom: 50px;
+}
+
+.discover-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px; /* More space between cards */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.discover-card {
+  background-color: #FFF8DC; /* Cornsilk */
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.discover-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.discover-card .card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.discover-card h3 {
+  color: #6B350F;
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+.discover-card p {
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.6;
+}
+
+.cta-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #8B4513; /* Primary brown background */
+  color: white;
+  margin-top: 50px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cta-section h3 {
+  font-size: 2.8em;
+  margin-bottom: 20px;
+}
+
+.cta-section p {
+  font-size: 1.3em;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.cta-section .button.primary {
+  background-color: #DAA520; /* Goldenrod for contrast */
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cta-section .button.primary:hover {
+  background-color: #B8860B;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 3.5em;
+  }
+  .hero-content .tagline {
+    font-size: 1.8em;
+  }
+  .hero-content .description {
+    font-size: 1.1em;
+  }
+  .button {
+    padding: 15px 30px;
+    font-size: 1.1em;
+  }
+  .discover-section h2, .cta-section h3 {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto;
+    min-height: 350px;
+    padding: 40px 20px;
+  }
+  .hero-content h1 {
+    font-size: 2.8em;
+  }
+  .hero-content .tagline {
+    font-size: 1.5em;
+  }
+  .hero-content .description {
+    font-size: 0.95em;
+  }
+  .action-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .button {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .discover-section, .cta-section {
+    padding: 40px 15px;
+  }
+  .discover-section h2, .cta-section h3 {
+    font-size: 2em;
+  }
+  .discover-grid {
+    grid-template-columns: 1fr;
+  }
+  .discover-card h3 {
+    font-size: 1.6em;
+  }
+  .discover-card p {
+    font-size: 1em;
+  }
+  .cta-section p {
+    font-size: 1.1em;
+  }
+}

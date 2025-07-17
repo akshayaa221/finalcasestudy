@@ -1,0 +1,158 @@
+.booking-management-container {
+  padding: var(--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .error-message,
+  .success-message,
+  .loading-message,
+  .no-bookings-message {
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .error-message {
+    background-color: var(--color-danger);
+    color: var(--color-text-light);
+  }
+
+  .success-message {
+    background-color: var(--color-success);
+    color: var(--color-text-light);
+  }
+
+  .loading-message {
+    background-color: var(--color-info);
+    color: var(--color-text-light);
+  }
+
+  .no-bookings-message {
+    background-color: var(--color-background-muted);
+    color: var(--color-text-dark);
+  }
+
+  .filter-section {
+    background-color: var(--color-background-light);
+    border: 1px solid var(--color-background-muted);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+
+    label {
+      font-weight: 600;
+      color: var(--color-text-dark);
+    }
+
+    select {
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-background-muted);
+      border-radius: var(--border-radius-sm);
+      font-size: var(--font-size-base);
+    }
+  }
+
+  .booking-list-section {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+
+    h3 {
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-lg);
+    }
+  }
+
+  .bookings-table-responsive {
+    overflow-x: auto;
+    margin-top: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-background-light);
+  }
+
+  .bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    th, td {
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--color-background-muted);
+    }
+
+    th {
+      background-color: var(--color-primary);
+      color: var(--color-text-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: var(--font-size-sm);
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--color-background-muted);
+    }
+
+    tr:hover {
+      background-color: #f0f2f4; // Example lighter muted background
+    }
+
+    td {
+      color: var(--color-text-dark);
+      font-size: var(--font-size-base);
+    }
+
+    select {
+      padding: var(--spacing-xs);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--color-background-muted);
+      background-color: var(--color-background-light);
+      font-size: var(--font-size-sm);
+      cursor: pointer;
+      min-width: 100px; // Ensure enough width for status text
+    }
+
+    .status-select-pending {
+      color: var(--color-warning);
+      border-color: var(--color-warning);
+    }
+    .status-select-confirmed {
+      color: var(--color-success);
+      border-color: var(--color-success);
+    }
+    .status-select-cancelled {
+      color: var(--color-danger);
+      border-color: var(--color-danger);
+    }
+    .status-select-completed {
+      color: var(--color-info);
+      border-color: var(--color-info);
+    }
+
+    .delete-button {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      background-color: var(--color-danger);
+      color: var(--color-text-light);
+      border: none;
+      &:hover {
+        background-color: #c82333; // Darker danger
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<header class="app-header">
+  <nav>
+    <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+
+    <!-- Links for NOT logged in users -->
+    <ng-container *ngIf="!authService.isLoggedIn()">
+      <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a>
+      <a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a>
+    </ng-container>
+
+    <!-- Links for LOGGED IN users -->
+    <ng-container *ngIf="authService.isLoggedIn()">
+      <a routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a>
+      <a routerLink="/hotels" routerLinkActive="active" ariaCurrentWhenActive="page">Hotels</a>
+      <a routerLink="/my-bookings" routerLinkActive="active" ariaCurrentWhenActive="page">My Bookings</a>
+      <a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">My Profile</a>
+
+      <!-- Admin Links (only if user has ADMIN role) -->
+      <a *ngIf="authService.hasRole('ADMIN')" routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">Admin Dashboard</a>
+
+      <button (click)="logout()">Logout</button>
+    </ng-container>
+  </nav>
+</header>
+
+<main class="app-main-content">
+  <!-- This is where routed components will be displayed -->
+  <router-outlet></router-outlet>
+</main>

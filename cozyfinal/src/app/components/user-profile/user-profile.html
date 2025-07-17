@@ -1,0 +1,67 @@
+<div class="user-profile-container">
+  <h2>My Profile</h2>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Loading profile...
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="userProfile && !isLoading" class="profile-card">
+    <div *ngIf="!isEditing">
+      <h3>Personal Information</h3>
+      <p><strong>Username:</strong> {{ userProfile.username }}</p>
+      <p><strong>Email:</strong> {{ userProfile.email }}</p>
+      <p><strong>Roles:</strong>
+        <span *ngFor="let role of userProfile.roles; last as isLast">
+          {{ role }}{{ !isLast ? ', ' : '' }}
+        </span>
+      </p>
+      <button (click)="toggleEditMode()" class="edit-button">Edit Profile</button>
+    </div>
+
+    <div *ngIf="isEditing" class="edit-profile-form">
+      <h3>Edit Profile</h3>
+      <form (ngSubmit)="saveProfile()">
+        <div class="form-group">
+          <label for="editUsername">Username:</label>
+          <input type="text" id="editUsername" name="editUsername" [(ngModel)]="updatedUser!.username" required />
+        </div>
+        <div class="form-group">
+          <label for="editEmail">Email:</label>
+          <input type="email" id="editEmail" name="editEmail" [(ngModel)]="updatedUser!.email" required />
+        </div>
+
+        <hr> <!-- Separator for password section -->
+
+        <h4>Change Password (Optional)</h4>
+        <div class="form-group">
+          <label for="newPassword">New Password:</label>
+          <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newPassword" />
+        </div>
+        <div class="form-group">
+          <label for="confirmNewPassword">Confirm New Password:</label>
+          <input type="password" id="confirmNewPassword" name="confirmNewPassword" [(ngModel)]="confirmNewPassword" />
+          <div *ngIf="newPassword && newPassword !== confirmNewPassword" class="error-message">
+            Passwords do not match.
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="save-button" [disabled]="newPassword && newPassword !== confirmNewPassword">
+            Save Changes
+          </button>
+          <button type="button" (click)="toggleEditMode()" class="cancel-button">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+/* Styling for the Dashboard Component */
+
+.dashboard-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px; /* Consistent rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  text-align: center;
+  font-family: 'Inter', sans-serif; /* Consistent font */
+}
+
+h2 {
+  color: #8B4513; /* SaddleBrown - Primary accent color */
+  font-size: 2.8em; /* Prominent heading */
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.user-info {
+  background-color: #FDF5E6; /* Light, warm background for user info */
+  border: 1px solid #D2B48C; /* Tan border */
+  border-radius: 8px;
+  padding: 15px 25px;
+  margin-bottom: 30px;
+  font-size: 1.1em;
+  color: #333;
+  line-height: 1.6;
+}
+
+.user-info p {
+  margin: 5px 0;
+}
+
+.user-info strong {
+  color: #6B350F; /* Darker brown for emphasis */
+}
+
+.dashboard-summary {
+  margin-bottom: 40px;
+  font-size: 1.2em;
+  color: #555;
+  line-height: 1.8;
+}
+
+.dashboard-summary p {
+  margin-bottom: 15px;
+}
+
+.dashboard-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Button shadow */
+}
+
+.button.primary {
+  background-color: #8B4513; /* SaddleBrown */
+  color: white;
+}
+
+.button.primary:hover {
+  background-color: #6B350F; /* Darker brown on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button.secondary {
+  background-color: #6c757d; /* Neutral grey */
+  color: white;
+}
+
+.button.secondary:hover {
+  background-color: #5a6268; /* Darker grey on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin: 20px 15px;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 2.2em;
+  }
+
+  .user-info, .dashboard-summary {
+    font-size: 1em;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .button {
+    width: 80%; /* Make buttons wider on small screens */
+    margin: 0 auto;
+  }
+}
